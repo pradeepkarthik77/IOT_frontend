@@ -248,6 +248,20 @@ class Solution:
         with col2:
             widget_container2 = st.empty()
             widget_container2.metric(label="Predicted Electricity Bill", value=charges, delta="Rupees")
+        
+        week1 = model.make_future_dataframe(periods=7, freq='D')  # Predicting 30 days from the last date in the dataset
+        week2 = model.make_future_dataframe(periods=7,freq='D')
+        week3 = model.make_future_dataframe(periods=7,freq='D')
+        week4 = model.make_future_dataframe(periods=7,freq='D')
+        
+
+        # Step 4: Make predictions
+        forecast1 = model.predict(week1)
+        forecast2 = model.predict(week2)
+        forecast3 = model.predict(week3)
+        forecast4 = model.predict(week4)
+
+        st.write(forecast1)
 
 
 
