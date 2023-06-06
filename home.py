@@ -250,11 +250,20 @@ class Solution:
             widget_container2.metric(label="Predicted Electricity Bill", value=charges, delta="Rupees")
         
         weeklydata = model.make_future_dataframe(periods=28, freq='D')  # Predicting 30 days from the last date in the dataset
-        
-        st.write(weeklydata)
 
-        # week1 = weeklydata['yhat'].iloc[-7:]
-        # week2 = weeklydata['yhat'].iloc[-]
+        week1 = weeklydata['yhat'].iloc[-7:].sum()
+        week2 = weeklydata['yhat'].iloc[-14:-7].sum()
+        week3 = weeklydata['yhat'].iloc[-21:-14].sum()
+        week4 = weeklydata['yhat'].iloc[-28:-21].sum()
+
+        col1, col2 = st.columns(2)
+
+        st.write("Weekly Prediction for the next month")
+
+        st.metric(label="Week 1",value = week1,delta="watts")
+        st.metric(label="Week 2",value = week2,delta="watts")
+        st.metric(label="Week 3",value = week3,delta="watts")
+        st.metric(label="Week 4",value = week4,delta="watts")
 
 
 
